@@ -4,12 +4,12 @@ Nessa atividade, vamos dar os primeiros passos com JavaScript, praticando com a 
 
 ## Informações Gerais
 
-- Nome:
-- Matricula:
+- Nome: Victor Cândido Leite
+- Matricula: 909098
 
 ## Print do console do navegador
 
-<<  COLOQUE A IMAGEM AQUI >>
+<img src="public/img/desktop-orcamento-pessoal.png" alt="print da tela versão desktop">
 
 
 
