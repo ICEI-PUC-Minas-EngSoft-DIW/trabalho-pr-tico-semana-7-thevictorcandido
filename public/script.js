@@ -1,66 +1,41 @@
-let nome = prompt("Qual é o seu nome?");
-
-let rendaMensalStr = prompt("Informe sua renda mensal:");
-let rendaMensal = Number(rendaMensalStr);
-
-while (isNaN(rendaMensal) || rendaMensalStr === null || rendaMensalStr.trim() === "") {
-    rendaMensalStr = prompt("Valor inválido! Digite apenas números para a sua renda mensal:");
-    rendaMensal = Number(rendaMensalStr);
+var nome = prompt("Qual seu nome? ");
+var rendaMensal = Number(prompt("Qual a sua renda mensal? "));
+while (isNaN(rendaMensal)) {
+    rendaMensal = Number(prompt("Valor inválido! Digite novamente sua Renda Mensal: "));
 }
 
-let qtdDespesasStr = prompt("Quantas despesas serão informadas?");
-let qtdDespesas = Number(qtdDespesasStr);
-
-while (isNaN(qtdDespesas) || qtdDespesasStr === null || qtdDespesasStr.trim() === "") {
-    qtdDespesasStr = prompt("Valor inválido! Digite um número para a quantidade de despesas:");
-    qtdDespesas = Number(qtdDespesasStr);
+var despesas = Number(prompt("Quantas despesas você possui? "));
+while (isNaN(despesas)) {
+    despesas = Number(prompt("Valor inválido! Digite novamente suas despesas: "));
 }
 
-if (qtdDespesas < 1) {
-    qtdDespesas = 1;
-} else if (qtdDespesas > 5) {
-    qtdDespesas = 5;
-} else {
-    qtdDespesas = Math.floor(qtdDespesas); 
+if (despesas < 1) {
+    despesas = 1;
+}
+else if (despesas > 5) {
+    despesas = 5;
 }
 
-let totalDespesas = 0;
+let valorTotal = 0;
+for (let i = 0; i < despesas; i++) {
+    let valorDespesa = Number(prompt(`Qual o valor da despesa ${i + 1}? `));
+    valorTotal = valorTotal + valorDespesa;
+}
 
-for (let i = 1; i <= qtdDespesas; i++) {
-    let valorDespesaStr = prompt(`Informe o valor da Despesa ${i}:`);
-    let valorDespesa = Number(valorDespesaStr);
-
-    while (isNaN(valorDespesa) || valorDespesaStr === null || valorDespesaStr.trim() === "") {
-        valorDespesaStr = prompt(`Valor numérico inválido! Digite novamente o valor da Despesa ${i}:`);
-        valorDespesa = Number(valorDespesaStr);
+let mensagem = "";
+let sobra = 0;
+if (valorTotal > rendaMensal) {
+    mensagem = "⚠️ Atenção: você gastou mais do que ganhou.";
+}
+else {
+    sobra = rendaMensal - valorTotal;
+    if (sobra >= (rendaMensal * 0.3)) {
+        mensagem = "✅ Ótimo: boa margem de sobra.";
     }
-
-    totalDespesas += valorDespesa;
-}
-
-let sobra = rendaMensal - totalDespesas;
-let classificacao = "";
-
-if (totalDespesas > rendaMensal) {
-    classificacao = "⚠️ Atenção: você gastou mais do que ganhou.";
-} else {
-    let metaSobra = rendaMensal * 0.30; 
-    
-    if (sobra >= metaSobra) {
-        classificacao = "✅ Ótimo: boa margem de sobra.";
-    } else {
-        classificacao = "🙂 Ok: dá para melhorar a sobra.";
+    else {
+        mensagem = "🙂 Ok: dá para melhorar a sobra.";
     }
 }
 
-let resultadoFinal = 
-    `--- Resultado do Orçamento ---\n` +
-    `Nome: ${nome}\n` +
-    `Renda: R$ ${rendaMensal.toFixed(2)}\n` +
-    `Total de despesas: R$ ${totalDespesas.toFixed(2)}\n` +
-    `Sobra: R$ ${sobra.toFixed(2)}\n` +
-    `Análise: ${classificacao}`;
-
-alert(resultadoFinal);
-
-console.log(resultadoFinal);
+alert(`Seu nome é ${nome} \nSua renda é de R$${rendaMensal} \nO total das suas despesas é de R$${valorTotal} \nSobra no mês: R$${sobra} \nMensagem: ${mensagem}`)
+console.log(`Seu nome é ${nome} \nSua renda é de R$${rendaMensal} \nO total das suas despesas é de R$${valorTotal} \nSobra no mês: R$${sobra} \nMensagem: ${mensagem}`)
